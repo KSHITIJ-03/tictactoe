@@ -13,13 +13,20 @@ const cellClickHandler = async (event) => {
             const x = cell.getAttribute('x');
             const y = cell.getAttribute('y');
             const res = await axios.post(`http://localhost:3000/api/${user}/${x}/${y}`);
-            if(res.data.status === 'success') {
+            if(res.data.status === 'endgame') {
+                console.log(index);
+                cell.classList.add('occupied');
+                alert(res.data.message)
+                location.reload(true)
+                cell.removeEventListener('click', cellClickHandler);
+            }
+            else if(res.data.status === 'success') {
                 console.log(index);
                 cell.classList.add('occupied');
                 cell.removeEventListener('click', cellClickHandler);
             }
-    
-        } else {
+        }   
+         else {
             cell.textContent = '0';
             clicks = true;
             const user = 'o';
@@ -27,7 +34,14 @@ const cellClickHandler = async (event) => {
             const x = cell.getAttribute('x');
             const y = cell.getAttribute('y');
             const res = await axios.post(`http://localhost:3000/api/${user}/${x}/${y}`)
-            if(res.data.status === 'success') {
+            if(res.data.status === 'endgame') {
+                console.log(index);
+                cell.classList.add('occupied');
+                alert(res.data.message)
+                location.reload(true)
+                cell.removeEventListener('click', cellClickHandler);
+            }
+            else if(res.data.status === 'success') {
                 console.log(index);
                 cell.classList.add('occupied');
                 cell.removeEventListener('click', cellClickHandler);
