@@ -8,13 +8,13 @@ app.listen(3000, () => {
     console.log("server started at port 3000");
 })
 
-const x = [
+let x = [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
 ];
 
-const o = [
+let o = [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
@@ -121,6 +121,16 @@ const winner = async(req, res, next) => {
     try {
         console.log(req.winner);
         const win = req.winner.winner
+        x = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ];
+        o = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ];
         return res.status(200).json({
             status : "endgame",
             message :  `${win} winner`
